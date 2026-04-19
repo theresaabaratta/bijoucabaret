@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Art of Burlesque — A Complete Guide</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --crimson: #8B0000;
+      --gold: #C9A84C;
+      --gold-light: #F0D080;
+      --ivory: #F7F0E3;
+      --charcoal: #1A1A1A;
+      --deep-red: #5C0011;
+      --velvet: #2A0A1A;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--charcoal);
+      color: var(--ivory);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 30%, #3D0010 0%, #1A0008 45%, #0D0005 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139,0,0,0.15) 0%, transparent 50%);
+    }
+
+    .hero-ornament {
+      font-size: 1.4rem;
+      letter-spacing: 0.6em;
+      color: var(--gold);
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1.2s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.0;
+      text-shadow: 0 0 80px rgba(201,168,76,0.3), 0 4px 30px rgba(0,0,0,0.8);
+      animation: fadeUp 1.2s ease 0.2s both;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      font-style: italic;
+      color: var(--ivory);
+      opacity: 0.75;
+      letter-spacing: 0.08em;
+      animation: fadeUp 1.2s ease 0.4s both;
+      margin-bottom: 2.5rem;
+    }
+
+    .divider-gold {
+      width: 180px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 1.2s ease 0.6s both;
+    }
+
+    .hero-intro {
+      max-width: 680px;
+      font-size: 1.2rem;
+      color: var(--ivory);
+      opacity: 0.85;
+      animation: fadeUp 1.2s ease 0.7s both;
+      font-style: italic;
+    }
+
+    /* Feather decoration */
+    .feather-deco {
+      font-size: 4rem;
+      opacity: 0.12;
+      position: absolute;
+      pointer-events: none;
+    }
+    .feather-deco.left  { left: -20px; top: 30%; transform: rotate(-20deg); }
+    .feather-deco.right { right: -20px; bottom: 20%; transform: rotate(20deg); }
+
+    /* ── SECTION STYLES ── */
+    .section-dark {
+      background: #110005;
+      padding: 5rem 0;
+    }
+    .section-velvet {
+      background: linear-gradient(180deg, #1A0008 0%, #0D0005 100%);
+      padding: 5rem 0;
+    }
+    .section-mid {
+      background: #0D0005;
+      padding: 5rem 0;
+    }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .lead-ivory {
+      font-size: 1.25rem;
+      color: var(--ivory);
+      opacity: 0.85;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    p { color: rgba(247,240,227,0.82); }
+
+    /* ── ORNAMENTAL RULE ── */
+    .ornament-rule {
+      text-align: center;
+      color: var(--gold);
+      opacity: 0.5;
+      font-size: 1.4rem;
+      letter-spacing: 0.4em;
+      margin: 2.5rem 0;
+    }
+
+    /* ── HISTORY TIMELINE ── */
+    .timeline-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: absolute;
+      left: -6px; top: 6px;
+    }
+    .timeline-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── FILM SECTION ── */
+    .film-card {
+      background: linear-gradient(135deg, rgba(139,0,0,0.2) 0%, rgba(42,10,26,0.6) 100%);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .film-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      color: var(--gold);
+      opacity: 0.06;
+      position: absolute;
+      top: -1rem; left: 1rem;
+      line-height: 1;
+    }
+
+    .film-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .film-year {
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      opacity: 0.7;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .cast-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      padding: 0.3rem 1rem;
+      border-radius: 2px;
+      margin: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .song-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      color: rgba(247,240,227,0.8);
+    }
+    .song-list li::before {
+      content: '♪ ';
+      color: var(--gold);
+    }
+
+    /* ── VIDEO CARDS ── */
+    .video-card {
+      background: rgba(26,0,8,0.8);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      height: 100%;
+    }
+    .video-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .video-thumb {
+      position: relative;
+      padding-top: 56.25%;
+      overflow: hidden;
+      background: #0D0005;
+    }
+    .video-thumb iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-info {
+      padding: 1.25rem 1.5rem;
+    }
+    .video-info h5 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .video-info p {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    /* ── PERFORMERS GRID ── */
+    .performer-card {
+      background: rgba(42,10,26,0.5);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .performer-card:hover {
+      border-color: rgba(201,168,76,0.5);
+      background: rgba(42,10,26,0.8);
+    }
+    .performer-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .performer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    .performer-era {
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── QUOTE BLOCK ── */
+    .pullquote {
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      background: rgba(201,168,76,0.04);
+    }
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--ivory);
+      margin: 0 0 0.75rem;
+    }
+    .pullquote cite {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar-burlesque {
+      background: rgba(13,0,5,0.96);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .navbar-burlesque .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--gold) !important;
+      letter-spacing: 0.05em;
+    }
+    .navbar-burlesque .nav-link {
+      color: rgba(247,240,227,0.75) !important;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .navbar-burlesque .nav-link:hover {
+      color: var(--gold) !important;
+    }
+    .navbar-toggler { border-color: rgba(201,168,76,0.4); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28201%2C168%2C76%2C0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080003;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 3rem 0 2rem;
+      text-align: center;
+    }
+    footer p { color: rgba(247,240,227,0.4); font-size: 0.9rem; margin: 0; }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── UTILITIES ── */
+    .text-gold { color: var(--gold) !important; }
+    .text-gold-light { color: var(--gold-light) !important; }
+    .gold-hr { border-color: rgba(201,168,76,0.25); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-burlesque sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">✦ The Burlesque Guide</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="#history">History</a></li>
+        <li class="nav-item"><a class="nav-link" href="#film">The Film</a></li>
+        <li class="nav-item"><a class="nav-link" href="#performers">Legends</a></li>
+        <li class="nav-item"><a class="nav-link" href="#videos">Watch</a></li>
+        <li class="nav-item"><a class="nav-link" href="#revival">Neo-Burlesque</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="feather-deco left">🪶🪶🪶</div>
+  <div class="feather-deco right">🪶🪶🪶</div>
+  <div class="hero-ornament">✦ &nbsp; Est. 1840s &nbsp; ✦</div>
+  <h1>Burlesque</h1>
+  <p class="hero-sub">The Art of the Tease — A Complete Guide</p>
+  <div class="divider-gold"></div>
+  <p class="hero-intro">
+    From Victorian music halls to glittering Hollywood screens, burlesque has captivated audiences 
+    for nearly two centuries — bold, witty, sensual, and unmistakably alive.
+  </p>
+</section>
+
+<!-- WHAT IS BURLESQUE -->
+<section class="section-dark" id="history">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <span class="section-label">Origins &amp; Meaning</span>
+        <h2 class="section-title">What Is <em>Burlesque?</em></h2>
+        <p class="lead-ivory">
+          Burlesque is a theatrical art form built on contrast — high and low, ridiculous and sublime, 
+          covered and revealed. At its heart, it is performance elevated by personality.
+        </p>
+        <p>
+          The word comes from the Italian <em>burlesco</em>, meaning "mockery" or "jest." In its earliest forms, 
+          burlesque was a literary and theatrical style that parodied serious subjects — opera, Shakespeare, 
+          epic poetry — through exaggeration and comedy. By the mid-19th century, it had evolved into 
+          a distinct entertainment genre with music, dance, comedy sketches, and gradually, striptease.
+        </p>
+        <p>
+          What separates burlesque from mere striptease is performance craft: the costumes, the characters, 
+          the comedic timing, the audience relationship. A great burlesque performer is part actor, 
+          part comedian, part dancer — and entirely in control of the room.
+        </p>
+
+        <div class="pullquote">
+          <p>"Burlesque is the art of the tease — it is never about what is revealed, but how."</p>
+          <cite>— Dita Von Teese</cite>
+        </div>
+
+        <div class="ornament-rule">— ✦ ✦ ✦ —</div>
+
+        <!-- TIMELINE -->
+        <h3 class="section-title mt-2" style="font-size:2rem;">A Brief <em>Timeline</em></h3>
+
+        <div class="timeline-item mt-4">
+          <div class="timeline-year">1840s – 1860s</div>
+          <div class="timeline-title">Literary Burlesque &amp; the Music Hall</div>
+          <p>Theatrical burlesque flourishes in London and New York music halls, lampooning opera 
+          and melodrama. Lydia Thompson's "British Blondes" troupe tours America in 1868, scandalizing 
+          and delighting in equal measure — women in tights on stage was revolutionary.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1880s – 1920s</div>
+          <div class="timeline-title">The Golden Age of American Burlesque</div>
+          <p>Burlesque houses multiply across American cities. The shows combine comedy "bits," 
+          specialty acts, and chorus girl routines. Comedians like Bud Abbott and Lou Costello 
+          cut their teeth on the burlesque circuit. The striptease emerges as a staple feature.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1930s – 1940s</div>
+          <div class="timeline-title">Gypsy Rose Lee &amp; the Art of the Strip</div>
+          <p>Gypsy Rose Lee transforms striptease into sophisticated theater — witty, brainy, and 
+          theatrical. Ann Corio, Georgia Sothern, and Sally Rand define the era. New York Mayor 
+          LaGuardia closes burlesque theaters in 1937, sending the form underground.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1990s – Present</div>
+          <div class="timeline-title">The Neo-Burlesque Revival</div>
+          <p>A new generation reclaims burlesque as feminist performance art. Dita Von Teese becomes 
+          the global face of the revival, while the Suicide Girls, Julie Atlas Muz, and hundreds 
+          of independent performers rebuild the scene in Brooklyn, London, and beyond — now inclusive 
+          of all bodies, genders, and identities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FILM -->
+<section class="section-velvet" id="film">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <span class="section-label">Hollywood &amp; Burlesque</span>
+        <h2 class="section-title">The 2010 Film: <em>Burlesque</em></h2>
+        <p class="lead-ivory">
+          When two of entertainment's most iconic voices came together, the result was a glittering love letter 
+          to showbiz, sequins, and the power of a great voice.
+        </p>
+
+        <div class="film-card">
+          <div class="film-title">Burlesque</div>
+          <div class="film-year">✦ &nbsp; 2010 &nbsp; · &nbsp; Directed by Steve Antin &nbsp; ✦</div>
+
+          <p>
+            Released on November 24, 2010, <em>Burlesque</em> is a musical drama that follows Ali Rose 
+            (played by Christina Aguilera), a small-town Iowa girl who escapes her dead-end waitressing job 
+            and heads to Los Angeles with big dreams and an even bigger voice. She stumbles into the Burlesque 
+            Lounge — a struggling West Hollywood club run by the glamorous and imperious Tess (Cher) — 
+            and works her way from cocktail waitress to star performer.
+          </p>
+
+          <p>
+            The film is unapologetically theatrical: a glittering fantasy of show business built on 
+            outstanding vocal performances, spectacular costumes by Michael Kaplan, and production 
+            design that evokes the golden age of Hollywood supper clubs. Director Steve Antin wrote 
+            the screenplay as a tribute to classic Hollywood musicals.
+          </p>
+
+          <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+              <h5 class="text-gold-light mb-3" style="font-family:'Playfair Display',serif; font-style:italic;">Lead Cast</h5>
+              <div>
+                <span class="cast-badge">Cher as Tess</span>
+                <span class="cast-badge">Christina Aguilera as Ali</span>
+                <span class="cast-badge">Cam Gigandet as Jack</span>
+                <span class="cast-badge">Eric Dane as Marcus</span>
+                <span class="cast-badge">Julianne Hough as Nikki</span>
+                <span class="cast-badge">Stanley Tucci as Sean</span>
+                <span class="cast-badge">Kristen Bell as Georgia</span>
+                <span class="cast-badge">Alan Cumming as Alexis</span>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <h5 class="text-gold-light mb-3" style="font-family:'Playfair Display',serif; font-style:italic;">Notable Songs</h5>
+              <ul class="list-unstyled song-list">
+                <li>"Welcome to Burlesque" — Cher</li>
+                <li>"Express" — Christina Aguilera</li>
+                <li>"Tough Lover" — Christina Aguilera</li>
+                <li>"Bound to You" — Christina Aguilera</li>
+                <li>"You Haven't Seen the Last of Me" — Cher</li>
+                <li>"Show Me How You Burlesque" — Christina Aguilera</li>
+                <li>"Guy What Takes His Time" — Christina Aguilera</li>
+              </ul>
+            </div>
+          </div>
+
+          <hr class="gold-hr my-4"/>
+
+          <h5 class="text-gold-light mb-2" style="font-family:'Playfair Display',serif; font-style:italic;">
+            Awards &amp; Legacy
+          </h5>
+          <p>
+            The film earned a <strong class="text-gold">Golden Globe nomination</strong> for Best Original Song 
+            ("You Haven't Seen the Last of Me" — which won the award), and the soundtrack reached the Top 10 
+            in multiple countries. While critics were divided, audiences adored it — the film has since developed 
+            a strong cult following, regularly cited as a comfort-watch classic for fans of musical theater, 
+            camp aesthetics, and powerhouse vocal performances.
+          </p>
+          <p>
+            Christina Aguilera's vocal performance is widely considered one of the finest in any modern 
+            Hollywood musical — demonstrating a range and control that elevated every scene she appeared in. 
+            For Cher, the film was a triumphant return to acting, showcasing her trademark commanding screen 
+            presence and delivering "You Haven't Seen the Last of Me" — a ballad that became an anthem 
+            of resilience.
+          </p>
+          <p>
+            The film's celebration of female empowerment, showbiz community, and artistry over adversity 
+            gave it a message that resonated far beyond its box office performance. In 2023 and 2024, 
+            talks of a stage musical adaptation further cemented its cultural staying power.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGENDARY PERFORMERS -->
+<section class="section-mid" id="performers">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-7 text-center">
+        <span class="section-label">Icons of the Stage</span>
+        <h2 class="section-title">Legends of <em>Burlesque</em></h2>
+        <p class="lead-ivory">
+          The art form has always been driven by extraordinary personalities — women (and others) 
+          who turned performance into power.
+        </p>
+      </div>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="performer-card">
+          <span class="performer-icon">👑</span>
+          <div class="performer-name">Gypsy Rose Lee</div>
+          <div class="performer-era">1930s – 1950s · The Intellectual Stripper</div>
+          <p>Perhaps the most famous burlesque performer in history. Lee wrote books, appeared on Broadway, 
+          and turned striptease into a sophisticated theatrical art, famously performing while discussing 
+          literature and philosophy.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="performer-card">
+          <span class="performer-icon">🌹</span>
+          <div class="performer-name">Dita Von Teese</div>
+          <div class="performer-era">1990s – Present · Queen of Neo-Burlesque</div>
+          <p>The modern face of burlesque globally. Von Teese's elaborately staged acts — including 
+          the famous giant martini glass routine — transformed burlesque into luxury theatrical 
+          entertainment and brought it to sold-out theaters worldwide.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="performer-card">
+          <span class="performer-icon">✨</span>
+          <div class="performer-name">Sally Rand</div>
+          <div class="performer-era">1930s · The Fan Dancer</div>
+          <p>Sally Rand's ostrich-feather fan dance at the 1933 Chicago World's Fair caused a national 
+          sensation. She was arrested four times in a single day — and used the publicity to become 
+          one of the most famous performers of her era.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="performer-card">
+          <span class="performer-icon">💎</span>
+          <div class="performer-name">Ann Corio</div>
+          <div class="performer-era">1930s – 1940s · Queen of Burlesque</div>
+          <p>Billed as the "Queen of Burlesque," Ann Corio was known for her grace and artistry. 
+          She later produced and starred in <em>This Was Burlesque</em>, a celebrated stage revue 
+          that ran for decades and preserved the classic form.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="performer-card">
+          <span class="performer-icon">🎭</span>
+          <div class="performer-name">Lydia Thompson</div>
+          <div class="performer-era">1860s – 1880s · The Original</div>
+          <p>The British performer who brought burlesque to America in 1868 with her troupe, 
+          "The British Blondes." Their satirical, cross-dressing performances shocked Victorian 
+          society and launched an entire genre of American entertainment.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="performer-card">
+          <span class="performer-icon">🌙</span>
+          <div class="performer-name">Julie Atlas Muz</div>
+          <div class="performer-era">2000s – Present · Neo-Burlesque Artist</div>
+          <p>Named "Queen of All Burlesque" at the first New York Burlesque Festival, Julie Atlas Muz 
+          represents the art's avant-garde wing — blending performance art, comedy, and classic tease 
+          into performances that challenge and enchant in equal measure.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="section-dark" id="videos">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-7 text-center">
+        <span class="section-label">Watch &amp; Discover</span>
+        <h2 class="section-title">Burlesque <em>On Screen</em></h2>
+        <p class="lead-ivory">
+          From the 2010 film's iconic numbers to legendary modern performers, 
+          these videos capture the art of burlesque at its finest.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Video 1: Burlesque Film - Express -->
+      <div class="col-md-6 col-lg-4">
+        <div class="video-card">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/3PtbaABZB8E" 
+              title="Christina Aguilera - Express (Burlesque)"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h5>Express — Christina Aguilera</h5>
+            <p>The breakout number from the 2010 film. Aguilera's powerhouse performance that announced 
+            Ali's arrival on the Burlesque Lounge stage.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 2: You Haven't Seen the Last of Me - Cher -->
+      <div class="col-md-6 col-lg-4">
+        <div class="video-card">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/5RRSiM0CORI"
+              title="Cher - You Haven't Seen the Last of Me"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h5>You Haven't Seen the Last of Me — Cher</h5>
+            <p>The Golden Globe-winning ballad from the film. Cher's commanding, emotional performance 
+            became an anthem of resilience and reinvention.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 3: Bound to You -->
+      <div class="col-md-6 col-lg-4">
+        <div class="video-card">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/eBsrFapFHdE"
+              title="Christina Aguilera - Bound to You"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h5>Bound to You — Christina Aguilera</h5>
+            <p>A breathtaking live studio performance of the film's romantic centerpiece, 
+            showcasing Aguilera's extraordinary vocal range and emotional depth.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 4: Dita Von Teese -->
+      <div class="col-md-6 col-lg-4">
+        <div class="video-card">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/lMy6fFPkUSE"
+              title="Dita Von Teese Burlesque Performance"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h5>Dita Von Teese — Live Performance</h5>
+            <p>The undisputed queen of modern burlesque in one of her legendary theatrical performances. 
+            Glamour, artistry, and spectacle at the highest level.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 5: History of Burlesque -->
+      <div class="col-md-6 col-lg-4">
+        <div class="video-card">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/MJr7F5pgMwA"
+              title="The History of Burlesque"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h5>The History of Burlesque</h5>
+            <p>A documentary overview tracing burlesque from its Victorian origins through the 
+            golden age and into the neo-burlesque revival of the 21st century.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 6: Show Me How You Burlesque -->
+      <div class="col-md-6 col-lg-4">
+        <div class="video-card">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/JzPpXdaFfcg"
+              title="Show Me How You Burlesque - Christina Aguilera"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h5>Show Me How You Burlesque — Aguilera</h5>
+            <p>The film's anthemic closing number — a celebratory showcase of the full Burlesque 
+            Lounge cast that captures the joyful, inclusive spirit of the show.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEO-BURLESQUE REVIVAL -->
+<section class="section-velvet" id="revival">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <span class="section-label">The Modern Scene</span>
+        <h2 class="section-title">The Neo-Burlesque <em>Revival</em></h2>
+        <p class="lead-ivory">
+          Burlesque didn't just survive into the 21st century — it was reborn, 
+          more inclusive, more diverse, and more politically charged than ever.
+        </p>
+
+        <p>
+          The neo-burlesque movement emerged in New York, San Francisco, and London in the 1990s, 
+          driven by performers who saw in the art form a powerful vehicle for feminist expression, 
+          body positivity, and queer identity. Where classical burlesque was largely heterosexual 
+          and limited in its representation, neo-burlesque welcomes all bodies, genders, and sexualities 
+          onto the stage.
+        </p>
+
+        <p>
+          The first New York Burlesque Festival launched in 2002 and has since grown into an 
+          internationally attended event. Similar festivals now exist in dozens of cities — 
+          London's BurlyQ, the San Francisco Burlesque Festival, and festivals across Europe and 
+          Australia draw both established names and emerging performers.
+        </p>
+
+        <div class="row mt-4 g-4">
+          <div class="col-md-4">
+            <div class="p-3 text-center" style="border:1px solid rgba(201,168,76,0.2); border-radius:4px;">
+              <div class="text-gold" style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700;">200+</div>
+              <p style="font-size:0.9rem; margin:0;">Active burlesque troupes in North America alone</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 text-center" style="border:1px solid rgba(201,168,76,0.2); border-radius:4px;">
+              <div class="text-gold" style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700;">50+</div>
+              <p style="font-size:0.9rem; margin:0;">Annual burlesque festivals worldwide</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 text-center" style="border:1px solid rgba(201,168,76,0.2); border-radius:4px;">
+              <div class="text-gold" style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700;">180+</div>
+              <p style="font-size:0.9rem; margin:0;">Years of burlesque history and counting</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ornament-rule mt-5">— ✦ ✦ ✦ —</div>
+
+        <h4 class="text-gold-light mt-4 mb-3" style="font-family:'Playfair Display',serif; font-style:italic;">
+          What Makes a Great Burlesque Act?
+        </h4>
+        <p>
+          <strong class="text-gold">Character:</strong> Every great burlesque act begins with a persona — 
+          a heightened, theatrical version of self that commands the stage from the moment of entrance.
+        </p>
+        <p>
+          <strong class="text-gold">The Reveal:</strong> Not the destination but the journey. 
+          The best performers understand that each removal is a dramatic beat, timed to music, 
+          audience reaction, and narrative logic.
+        </p>
+        <p>
+          <strong class="text-gold">Comedy &amp; Wit:</strong> Burlesque has always had a sense of humor 
+          about itself. The comedic wink — the moment where performer and audience share in the absurdity 
+          and delight — is what separates burlesque from its less theatrical cousins.
+        </p>
+        <p>
+          <strong class="text-gold">Costuming:</strong> Often handmade and always spectacular. 
+          Classic burlesque costuming is engineering as much as art — elaborate constructions designed 
+          for maximum impact and strategic reveal.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Burlesque vs Stripping Section -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="card-custom">
+      <h2 class="text-center mb-4">How Burlesque Relates to Stripping</h2>
+
+      <p>
+        Burlesque and stripping are sometimes mentioned together, but they are not the same form of performance. Both can involve elements of dance, confidence, and stage presence, and both male and female performers may work in either space. However, the intention, structure, and presentation often differ in important ways.
+      </p>
+
+      <p>
+        Burlesque is traditionally a theatrical art form. It blends choreography, storytelling, costume design, humor, and music into a staged performance. Many acts are carefully planned and rehearsed, with a focus on character, pacing, and audience engagement. The performance often builds gradually, using movement and expression to create a full stage experience.
+      </p>
+
+      <p>
+        Stripping, whether performed by male or female entertainers, is typically more direct in its approach and is often associated with nightlife or private event settings. While it can also include dance and performance skill, it usually focuses more on immediate interaction and energy rather than a structured theatrical narrative.
+      </p>
+
+      <p>
+        That said, there is overlap. Some performers train in both styles, and techniques such as movement control, confidence, musical timing, and stage awareness can carry over between them. In modern entertainment, the lines can blur, especially as performers bring creativity and individuality into their routines.
+      </p>
+
+      <p>
+        Ultimately, both burlesque and stripping are forms of live performance that rely on presence, timing, and audience connection. The key difference is often in presentation—burlesque leaning toward theatrical storytelling, and stripping leaning toward direct engagement—while both can be performed by talented artists across a wide range of styles.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <span class="footer-brand">Burlesque</span>
+    <div class="divider-gold mb-3"></div>
+    <p>An informational guide to the art and history of burlesque performance.</p>
+    <p class="mt-2" style="font-size:0.8rem; opacity:0.3;">
+      ✦ &nbsp; All YouTube embeds link to publicly available content. &nbsp; ✦
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

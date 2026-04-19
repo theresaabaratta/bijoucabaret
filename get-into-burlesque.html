@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Want to Try Burlesque? Your Guide</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --crimson: #8B0000;
+      --gold: #C9A84C;
+      --gold-light: #F0D080;
+      --ivory: #F7F0E3;
+      --charcoal: #1A1A1A;
+      --velvet: #2A0A1A;
+    }
+
+    body {
+      background-color: var(--charcoal);
+      color: var(--ivory);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.85;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.3;
+    }
+
+    /* NAVBAR */
+    .navbar-burlesque {
+      background: rgba(13,0,5,0.97);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .navbar-burlesque .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--gold) !important;
+    }
+    .navbar-burlesque .nav-link {
+      color: rgba(247,240,227,0.75) !important;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .navbar-burlesque .nav-link:hover { color: var(--gold) !important; }
+    .navbar-toggler { border-color: rgba(201,168,76,0.4); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28201%2C168%2C76%2C0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* HERO */
+    .hero {
+      background: radial-gradient(ellipse at 50% 30%, #3D0010 0%, #1A0008 45%, #0D0005 100%);
+      padding: 7rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(201,168,76,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139,0,0,0.12) 0%, transparent 50%);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: block;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.1;
+      text-shadow: 0 0 60px rgba(201,168,76,0.25);
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .hero-sub {
+      font-style: italic;
+      color: rgba(247,240,227,0.75);
+      font-size: 1.2rem;
+      max-width: 580px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+    .divider-gold {
+      width: 160px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    /* CONTENT */
+    .content-wrap {
+      background: #0D0005;
+      padding: 4rem 0;
+    }
+
+    /* QUESTION BLOCKS */
+    .q-block {
+      margin-bottom: 4rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .q-block:last-child { border-bottom: none; }
+
+    .q-number {
+      font-size: 0.72rem;
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .q-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.25;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ANSWER CARDS */
+    .answer-card {
+      background: rgba(42,10,26,0.45);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.25rem;
+    }
+    .answer-card:hover {
+      border-color: rgba(201,168,76,0.3);
+    }
+    .answer-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .answer-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(201,168,76,0.2);
+    }
+    .answer-card p {
+      color: rgba(247,240,227,0.82);
+      margin: 0;
+    }
+
+    /* TIPS BOX */
+    .tips-box {
+      background: linear-gradient(135deg, rgba(139,0,0,0.15) 0%, rgba(42,10,26,0.5) 100%);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .tips-box h5 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .tips-box ul {
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+    .tips-box li {
+      color: rgba(247,240,227,0.8);
+      margin-bottom: 0.5rem;
+    }
+    .tips-box li::marker { color: var(--gold); }
+
+    /* PULLQUOTE */
+    .pullquote {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin: 2.5rem 0;
+    }
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-style: italic;
+      color: var(--gold-light);
+      margin: 0;
+      opacity: 0.9;
+    }
+    .pullquote::before, .pullquote::after {
+      content: '✦';
+      display: block;
+      color: var(--gold);
+      opacity: 0.4;
+      font-size: 1rem;
+      letter-spacing: 0.5em;
+      margin: 0.75rem 0;
+    }
+
+    /* STEP BADGES */
+    .step-row {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .step-badge {
+      flex: 1;
+      min-width: 160px;
+      background: rgba(42,10,26,0.6);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .step-badge .step-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+    .step-badge .step-label {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 1rem;
+      display: block;
+    }
+
+    /* SECTION DIVIDER */
+    .ornament-rule {
+      text-align: center;
+      color: var(--gold);
+      opacity: 0.4;
+      font-size: 1.2rem;
+      letter-spacing: 0.4em;
+      margin: 3rem 0;
+    }
+
+    /* SIDEBAR / META */
+    .meta-box {
+      background: rgba(42,10,26,0.5);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      padding: 1.5rem;
+      position: sticky;
+      top: 80px;
+    }
+    .meta-box h6 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .meta-box a {
+      display: block;
+      color: rgba(247,240,227,0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: color 0.2s;
+    }
+    .meta-box a:hover { color: var(--gold); }
+    .meta-box a::before { content: '✦ '; font-size: 0.6rem; color: var(--gold); opacity: 0.6; }
+
+    /* FOOTER */
+    footer {
+      background: #080003;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 3rem 0 2rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--gold);
+      opacity: 0.5;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    footer p { color: rgba(247,240,227,0.35); font-size: 0.88rem; margin: 0; }
+
+    p { color: rgba(247,240,227,0.82); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-burlesque sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">✦ The Burlesque Guide</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="#q1">Getting Started</a></li>
+        <li class="nav-item"><a class="nav-link" href="#q2">Key Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#q3">Learning</a></li>
+        <li class="nav-item"><a class="nav-link" href="#q4">Going Solo</a></li>
+        <li class="nav-item"><a class="nav-link" href="#q5">Getting Booked</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">✦ &nbsp; Performer's Guide &nbsp; ✦</span>
+  <h1>So You Want to Try Burlesque?</h1>
+  <p class="hero-sub">
+    Everything you need to know before stepping into the spotlight — 
+    from total newcomer to your first solo act.
+  </p>
+  <div class="divider-gold"></div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="content-wrap">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="meta-box">
+          <h6>In This Guide</h6>
+          <a href="#q1">Where Do I Begin?</a>
+          <a href="#q2">What Skills Do I Need?</a>
+          <a href="#q3">Where Do I Learn?</a>
+          <a href="#q4">Becoming a Solo Artist</a>
+          <a href="#q5">How Do I Land Gigs?</a>
+          <a href="#q6">What About Pay?</a>
+          <a href="#q7">Staying Inspired</a>
+        </div>
+      </div>
+
+      <!-- ARTICLE BODY -->
+      <div class="col-lg-8 ms-lg-4">
+
+        <p style="font-size:1.2rem; font-style:italic; margin-bottom:2.5rem;">
+          Burlesque is one of those worlds that looks impossibly glamorous from the outside — sequins, 
+          feathers, spotlight, and applause. But how do you actually break in? Whether you're dreaming 
+          of a professional career or just want to explore it as a creative outlet, here's what you 
+          genuinely need to know.
+        </p>
+
+        <div class="ornament-rule">— ✦ —</div>
+
+        <!-- Q1 -->
+        <div class="q-block" id="q1">
+          <span class="q-number">Question One</span>
+          <h2 class="q-title">I'm Completely New. Where on Earth Do I Start?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">The Short Answer</div>
+            <p>
+              Start by watching. Before you ever set foot in a class or dream up a character, 
+              go to live burlesque shows. Watch as many as you can. The world you see on streaming 
+              services or in Hollywood films is a polished fantasy — the real burlesque community 
+              is something you can only understand by actually being in a room when it happens. 
+              Local showcases, student performances, and independent productions are where the 
+              heart of the art form lives.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">The Longer Picture</div>
+            <p>
+              Burlesque is an enormously varied art form with no single "right" style. 
+              One performer's act might be camp comedy; another's might be high glamour; 
+              a third might be avant-garde performance art. The only way to figure out what 
+              speaks to you — what your eventual niche might be — is to expose yourself to 
+              as much of it as possible. Take classes alongside attending shows. Talk to people. 
+              Ask questions. The burlesque community has a reputation for being welcoming 
+              to enthusiastic newcomers, and that reputation is well earned.
+            </p>
+          </div>
+
+          <div class="tips-box">
+            <h5>Your First Steps</h5>
+            <ul>
+              <li>Find local burlesque shows and buy tickets — be an audience member first</li>
+              <li>Look for beginner or introductory burlesque classes in your area</li>
+              <li>Attend student showcases at dance or burlesque studios</li>
+              <li>Follow local performers on social media to stay in the loop</li>
+              <li>Research the history and variety of styles before settling on your direction</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-block" id="q2">
+          <span class="q-number">Question Two</span>
+          <h2 class="q-title">What Skills Do I Actually Need to Perform Professionally?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">Beyond the Stage</div>
+            <p>
+              Here's the thing most newcomers don't expect: performing is only a fraction of what 
+              being a burlesque artist actually involves. The performers who build lasting careers — 
+              or even just sustainable creative practices — are the ones who treat it like a business 
+              from day one. That means understanding marketing, managing your own bookings, handling 
+              finances, developing your act concepts, producing promotional materials, and building 
+              industry relationships. The glitter is real, but so is the spreadsheet.
+            </p>
+          </div>
+
+          <div class="step-row">
+            <div class="step-badge">
+              <span class="step-icon">🎭</span>
+              <span class="step-label">Performance Craft</span>
+            </div>
+            <div class="step-badge">
+              <span class="step-icon">📣</span>
+              <span class="step-label">Self-Marketing</span>
+            </div>
+            <div class="step-badge">
+              <span class="step-icon">✂️</span>
+              <span class="step-label">Costuming</span>
+            </div>
+            <div class="step-badge">
+              <span class="step-icon">📋</span>
+              <span class="step-label">Admin & Booking</span>
+            </div>
+            <div class="step-badge">
+              <span class="step-icon">🤝</span>
+              <span class="step-label">Networking</span>
+            </div>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">Important Reality Check</div>
+            <p>
+              The term "professional burlesque performer" gets thrown around loosely. In truth, 
+              very few performers support themselves entirely on burlesque income alone — the industry 
+              simply isn't large enough in most markets. That doesn't diminish it in any way. 
+              What it means is that approaching the craft with professionalism — in your reliability, 
+              your communication, your preparation, and your respect for other artists — matters 
+              enormously whether you're pursuing it full-time or as a passionate creative pursuit 
+              alongside other work.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-block" id="q3">
+          <span class="q-number">Question Three</span>
+          <h2 class="q-title">Where and How Can I Develop These Skills?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">Formal Training</div>
+            <p>
+              We're living through a golden age for burlesque education. Dedicated burlesque schools, 
+              dance studios offering burlesque programs, and specialist workshops with guest instructors 
+              have made the art more accessible than at any point in its history. Taking classes from 
+              multiple teachers is actively encouraged — each instructor brings a different background, 
+              style, and approach, and exposure to that range makes you a more versatile and 
+              well-rounded performer. Don't lock yourself into a single perspective too early.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">Play to What You Already Know</div>
+            <p>
+              Before diving into burlesque-specific training, take stock of skills you already have. 
+              Do you sew? Dance? Act? Have public speaking experience? Are you naturally funny in 
+              front of a crowd? All of these translate directly onto the burlesque stage. 
+              Identify where your strengths lie, then work on filling in the gaps around them 
+              rather than trying to build everything from scratch at once.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">The Stage Volunteer Tradition</div>
+            <p>
+              Many productions still welcome volunteer helpers — people who assist backstage, 
+              work the door, help with costume wrangling, or support front-of-house operations. 
+              This tradition gives newcomers direct access to the working environment of a real show, 
+              the chance to observe experienced performers up close, and the kind of genuine 
+              community relationships that you simply cannot build any other way. 
+              It's unglamorous work, and it is absolutely invaluable.
+            </p>
+          </div>
+
+          <div class="pullquote">
+            <p>The goal isn't perfection on day one. The goal is to be in the room — learning, watching, connecting.</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="q-block" id="q4">
+          <span class="q-number">Question Four</span>
+          <h2 class="q-title">How Do I Become a Solo Performer?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">Build the Foundation First</div>
+            <p>
+              Solo performance is not a shortcut — it's a destination you work toward. 
+              The artists who launch into solo acts before spending time in the community 
+              tend to miss the context that makes their work land. Before you develop your 
+              first solo piece, spend meaningful time attending shows, taking classes, 
+              volunteering, building relationships with producers and fellow performers, 
+              and genuinely understanding the landscape you're entering. The community 
+              will remember who showed up before they were ready to perform.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">Creating Your Persona</div>
+            <p>
+              Your stage identity is one of the most exciting and most personal decisions 
+              you'll make as a burlesque artist. Your performer name, your visual aesthetic, 
+              your character type — all of these should flow from who you genuinely are 
+              rather than who you think a burlesque performer is supposed to be. 
+              A great stage name communicates something immediate about your personality 
+              and style. Take your time with it. Research what names are already in use 
+              in your local and national scene.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">Developing Your Debut Act</div>
+            <p>
+              Your first solo act doesn't need to be the most ambitious thing you've ever 
+              conceived — in fact, the wisest advice most experienced performers will give 
+              you is to scale back your initial vision and execute it brilliantly rather 
+              than attempt something spectacular that isn't quite ready. Do what you do 
+              well. A smaller concept performed with total confidence and commitment 
+              will always outshine a complex act performed tentatively.
+              Film every rehearsal. Watch it back critically. 
+              Producers will ask for footage when you start applying to shows, 
+              and you'll want to be ready.
+            </p>
+          </div>
+
+          <div class="tips-box">
+            <h5>Debut Act Checklist</h5>
+            <ul>
+              <li>Your act should reflect your genuine personality — not a borrowed archetype</li>
+              <li>Play to skills you already have rather than skills you wish you had</li>
+              <li>Choose music you connect with emotionally, not just what sounds "burlesque"</li>
+              <li>Film rehearsals and review them honestly — this is your best feedback tool</li>
+              <li>There is no universal timeline. Some performers take six months; others take years</li>
+              <li>Ask for feedback from mentors and trusted peers — then actually use it</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="q-block" id="q5">
+          <span class="q-number">Question Five</span>
+          <h2 class="q-title">How Do I Actually Get Booked?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">The Reality of Booking</div>
+            <p>
+              Gigs in burlesque are not handed out — they're earned through persistent 
+              community presence, quality work, and professional conduct. No producer owes 
+              you stage time, and not every show will be the right fit for your style. 
+              There are also markets where the number of active performers genuinely exceeds 
+              the available slots, which means you'll face competition even when your work 
+              is strong. Resilience is not optional in this industry.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">How to Approach Producers</div>
+            <p>
+              When you're ready to apply for shows, lead with your promotional materials: 
+              a clear, professional performance video (even rehearsal footage works for early 
+              applications), a short bio, and a sense of what your act involves. 
+              Tailor your applications to the specific show — a late-night comedy burlesque 
+              night has different needs than a vintage glamour showcase. Show producers that 
+              you understand their brand and audience. Keep your communication brief, 
+              respectful, and follow up only once if you don't hear back.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">Relationships Are Everything</div>
+            <p>
+              Most bookings in burlesque happen through personal connections, not cold applications. 
+              Producers book people they trust to show up prepared, be professional backstage, 
+              treat the audience well, and represent the show positively. That trust is built 
+              over time through exactly the kinds of community involvement — attending shows, 
+              volunteering, being a reliable presence — described throughout this guide. 
+              Your reputation in this scene is your most valuable career asset.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="q-block" id="q6">
+          <span class="q-number">Question Six</span>
+          <h2 class="q-title">What Can I Realistically Expect to Earn?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">An Honest Breakdown</div>
+            <p>
+              Pay rates in burlesque vary enormously depending on the market, the size of 
+              the show, and the experience level of the performer. Many early-career performers 
+              work for minimal payment or simply for the experience and exposure — which is 
+              genuinely valuable when you're building your repertoire and your reputation. 
+              Established headliners at well-produced events command significantly more. 
+              The honest truth is that burlesque, for most performers, is not a primary income 
+              source but an artistic practice that can generate meaningful supplementary income 
+              for those who approach it with consistency and business sense.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">The Cost Side</div>
+            <p>
+              Before focusing on earnings, understand the costs. Burlesque costuming is 
+              an investment — quality materials, custom construction, and regular additions 
+              to your wardrobe add up quickly. Factor in class fees, travel, photography 
+              for promotional materials, and the time spent on rehearsal and act development. 
+              Approach it with a clear-eyed budget from the beginning, particularly if you 
+              intend to pursue it seriously.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="q-block" id="q7">
+          <span class="q-number">Question Seven</span>
+          <h2 class="q-title">How Do I Stay Inspired and Keep Growing?</h2>
+
+          <div class="answer-card">
+            <div class="answer-label">Never Stop Watching</div>
+            <p>
+              The performers who grow most consistently are the ones who never stop being 
+              audience members. Attend shows outside your immediate scene. Watch burlesque 
+              from other cities and countries. Explore adjacent art forms — cabaret, circus, 
+              drag, physical theatre, vintage film — that feed the same creative muscle. 
+              The moment you stop watching other artists with genuine curiosity is the moment 
+              your own work starts to narrow.
+            </p>
+          </div>
+
+          <div class="answer-card">
+            <div class="answer-label">Community as Creative Fuel</div>
+            <p>
+              Burlesque at its best is a genuinely collaborative community. The performers 
+              around you are not your competition — they are your creative ecosystem. 
+              Share resources, give honest feedback when asked, celebrate each other's 
+              successes, and lean on one another when the work gets difficult. 
+              That community spirit is what makes burlesque different from other performance 
+              industries, and it's worth protecting.
+            </p>
+          </div>
+
+          <div class="pullquote">
+            <p>Burlesque will give back exactly what you put into it — in creativity, in community, and in joy.</p>
+          </div>
+        </div>
+
+        <!-- CLOSING -->
+        <div style="background: linear-gradient(135deg, rgba(139,0,0,0.12) 0%, rgba(42,10,26,0.4) 100%); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:2.5rem; text-align:center;">
+          <div style="font-size:2rem; margin-bottom:1rem;">✦</div>
+          <h4 style="font-family:'Playfair Display',serif; font-style:italic; color:var(--gold-light); margin-bottom:1rem;">
+            Ready to Begin?
+          </h4>
+          <p style="max-width:500px; margin:0 auto;">
+            The most important step is the simplest one: show up. Go to a show this weekend. 
+            Sign up for a class. Introduce yourself to someone in the scene. 
+            Burlesque has welcomed newcomers for nearly two centuries, and it's ready to welcome you.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <span class="footer-brand">The Burlesque Guide</span>
+    <div class="divider-gold mb-3"></div>
+    <p>An independent informational resource for aspiring burlesque performers.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
